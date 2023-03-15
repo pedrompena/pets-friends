@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../../../../../../store/appContext";
 
-export const EditPetForm = ({ handleOpenEditModal, item }) => {
+export const EditPetForm = ({ handleOpenEditModal, item, getItems }) => {
   const { store, actions } = useContext(Context);
   const [image, setImage] = useState();
   const [checkBox, setCheckBox] = useState(true);
@@ -26,6 +26,7 @@ export const EditPetForm = ({ handleOpenEditModal, item }) => {
     );
     const data = await resp.json();
     console.log("dentro de async", data);
+    getItems();
   };
 
   const handleClick = () => {

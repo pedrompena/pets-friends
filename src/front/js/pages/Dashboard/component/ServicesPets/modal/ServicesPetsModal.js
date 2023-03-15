@@ -18,7 +18,7 @@ export const ServicesPetsModal = ({ handleOpenModal, getItems }) => {
         {store.clientInfo.roles === "Owner" ? (
           <PetForm handleOpenModal={handleOpenModal} getItems={getItems} />
           ) : (
-          <ServiceForm handleOpenModal={handleOpenModal} />
+          <ServiceForm handleOpenModal={handleOpenModal} getItems={getItems} />
         )}
       </div>
     </div>

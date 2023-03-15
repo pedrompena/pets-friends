@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../../../../../../store/appContext";
 
-export const PetForm = ({ handleOpenModal }) => {
+export const PetForm = ({ handleOpenModal, getItems }) => {
   const { store, actions } = useContext(Context);
   const [checkBox, setCheckBox] = useState(true);
   const [image, setImage] = useState();
@@ -22,7 +22,7 @@ export const PetForm = ({ handleOpenModal }) => {
     };
     const resp = await fetch(`${store.BACKEND_URL}api/pets`, options);
     const data = await resp.json();
-    console.log(data);
+    if (data) getItems();
   };
 
   const handleClick = () => {

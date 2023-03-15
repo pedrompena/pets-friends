@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../../../../../../store/appContext";
 
-export const ServiceForm = ({ handleOpenModal }) => {
+export const ServiceForm = ({ handleOpenModal, getItems }) => {
   const { store, actions } = useContext(Context);
   const [checkBox, setCheckBox] = useState(true);
   const [image, setImage] = useState();
@@ -25,7 +25,7 @@ export const ServiceForm = ({ handleOpenModal }) => {
     try {
       const resp = await fetch(`${store.BACKEND_URL}api/services`, options);
       const data = await resp.json();
-      console.log("dentro de addservice", data);
+      if (data) getItems();
     } catch (error) {
       console.error("Hay un error en el metodo", error);
     }
