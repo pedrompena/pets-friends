@@ -20,44 +20,32 @@ export const Chat = ({
   });
   const divRef = useRef(null);
 
-  const getMessages = async () => {
-    const resp = await fetch(store.BACKEND_URL + "api/message/" + chatId);
-    const data = await resp.json();
-    setMessages(data.results);
-  };
-
-  const send2Message = () => {
-    socket.emit("message", "Hola Pedro!")
-  }
-
-  const sendMessage = async () => {
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newMessage),
-    };
-    const resp = await fetch(store.BACKEND_URL + "api/message", options);
-    const data = await resp.json();
-    data && getMessages();
-    setNewMessage({ ...newMessage, content: "" });
-  };
-
   useEffect(() => {
     divRef.current.scrollTop = divRef.current.scrollHeight;
   }, [messages]);
 
+  const sendMessage = () => {
+    socket.emit("send_message", newMessage);
+    setNewMessage({ ...newMessage, content: "" });
+  };
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      getMessages();
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [messages]);
+    socket.emit("get_chat_history", { chat_id: chatId });
+    socket.emit("join", { client_id: store.clientInfo.id, chat_id: chatId });
+  }, []);
+
+  useEffect(() => {
+    socket.on("new_message", () => {
+      socket.emit("get_chat_history", { chat_id: chatId});
+    });
+
+    socket.on("chat_history", (data) => {
+      setMessages(data.messages);
+    });
+  });
 
   return (
     <div className="content">
-      <button onClick={send2Message}>click me!</button>
       <div className="dashboard-box container mt-4 mb-4 p-3 d-flex flex-column align-items-center bg-white col-4 gap-3">
         <div className="w-100 d-flex justify-content-between">
           <div className="col-10 d-flex align-items-center gap-3">
@@ -89,7 +77,7 @@ export const Chat = ({
                   return (
                     <div
                       key={message.id}
-                      className="message col-8 bg-white align-self-end"
+                      className="message px-3 py-1 bg-white align-self-end"
                     >
                       {message.content}
                     </div>
@@ -98,7 +86,7 @@ export const Chat = ({
                   return (
                     <div
                       key={message.id}
-                      className="message col-8 bg-dark text-white align-self-start"
+                      className="message px-3 py-1 bg-dark text-white align-self-start"
                     >
                       {message.content}
                     </div>

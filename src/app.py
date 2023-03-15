@@ -12,7 +12,7 @@ from api.routes import api, register_events
 from api.admin import setup_admin
 from api.commands import setup_commands
 from flask_jwt_extended import JWTManager
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit, join_room
 import cloudinary
 
 
@@ -36,7 +36,7 @@ cloudinary.config(cloud_name = os.getenv('CLOUD_NAME'),
 
 #WebSockets configuration
 socketio = SocketIO(app, cors_allowed_origins="*")
-register_events(socketio)
+register_events(socketio, emit, join_room)
 
 
 # database condiguration

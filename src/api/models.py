@@ -105,7 +105,7 @@ class Chat(db.Model):
     client_2 = db.relationship('Clients', foreign_keys=[client_2_id])
 
     def __repr__(self):
-        return '<Chat %r>' % self.id
+        return f'<Chat {self.id} ({self.client_1_id}, {self.client_2_id})>'
 
     def serialize(self):
         return {'id': self.id,

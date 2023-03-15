@@ -27,11 +27,11 @@
 }
 
 .avatar {
-    display: inline-block;
-    overflow: hidden;
-    border-radius: 50%;
-    width: 20%;
-    aspect-ratio: 1/1;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 50%;
+  width: 20%;
+  aspect-ratio: 1/1;
 }
 
 .chat-box {

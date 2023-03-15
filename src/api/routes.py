@@ -380,7 +380,7 @@ def get_messages(chat_id):
 
 
 #WEBSOCKETS
-def register_events(socketio):
+def register_events(socketio, emit, join_room):
     @socketio.on('connect')
     def handle_connect():
         print('Client connected')
@@ -388,9 +388,38 @@ def register_events(socketio):
     @socketio.on('disconnect')
     def handle_disconnect():
         print('Client disconnected')
+
+    @socketio.on('join')
+    def on_join(data):
+        user = data['client_id']
+        room = data['chat_id']
+        join_room(room)
+        emit('joined', {'user': user,  'room': room}, room=room)
     
-    @socketio.on('message')
-    def send_message(data):
-        print(str(data))
+    @socketio.on('send_message')
+    def handle_send_message(data):
+        chat_id = data['chat_id']
+        content = data['content']
+        date = data['date']
+        client_id = data['client_id']
+        print(data)
+
+        message = Message(chat_id=chat_id, content=content, client_id=client_id, date=date)
+        db.session.add(message)
+        db.session.commit()
+
+        emit('new_message', message.serialize(), room=chat_id)
+
+    @socketio.on('get_chat_history')
+    def handle_get_chat_history(data):
+        chat_id = data['chat_id']
+
+        chat = Chat.query.get(chat_id)
+        messages = Message.query.filter_by(chat_id=chat_id).all()
+
+        emit('chat_history', {
+            'chat': chat.serialize(),
+            'messages': [message.serialize() for message in messages]
+        })
 
 
