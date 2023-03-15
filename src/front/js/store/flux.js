@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       BACKEND_URL:
         "https://3001-s3rtr3s-petsfriends-00lslwimxf5.ws-eu90.gitpod.io/",
-      clientInfo: null,
+      clientInfo: {},
     },
     actions: {
       setClientInfo: () => {
@@ -12,7 +12,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       logout: () => {
         localStorage.removeItem("clientInfo");
-        setStore({ ...getStore(), clientInfo: null });
+        setStore({ ...getStore(), clientInfo: {} });
       },
       setLocalStorage: (client) => {
         localStorage.setItem("clientInfo", JSON.stringify(client))

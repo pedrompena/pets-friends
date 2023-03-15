@@ -11,10 +11,10 @@ export const UserInfo = ({ id }) => {
   const getClientInfo = async () => {
     const resp = await fetch(`${store.BACKEND_URL}api/clients/${id}`);
     const data = await resp.json();
-    setClientInfo(data.result);
     actions.setLocalStorage(data.result)
+    setClientInfo(data.result);
   };
-
+ 
   useEffect(() => {
     getClientInfo()
   }, []);
@@ -40,7 +40,7 @@ export const UserInfo = ({ id }) => {
       >
         Editar Perfil
       </a>
-      {openModal && <UserInfoModal handleOpenModal={handleOpenModal} getClientInfo={getClientInfo} />}
+      {openModal && <UserInfoModal handleOpenModal={handleOpenModal} getClientInfo={getClientInfo} clientInfo={clientInfo} />}
     </div>
   );
 };

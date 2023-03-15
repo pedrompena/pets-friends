@@ -13,9 +13,6 @@ export function SocketProvider({ children }) {
     const URL = store.BACKEND_URL;
     const socketClient = io(URL);
     setSocket(socketClient);
-    return () => {
-      cleanup;
-    };
   }, []);
 
   return (

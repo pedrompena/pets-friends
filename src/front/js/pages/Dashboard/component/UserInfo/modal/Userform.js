@@ -1,22 +1,22 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../../../../../store/appContext";
 
-export const UserForm = ({ handleOpenModal, getClientInfo }) => {
+export const UserForm = ({ handleOpenModal, getClientInfo, clientInfo }) => {
   const { store, actions } = useContext(Context);
-  const [city, setCity] = useState();
-  const [image, setImage] = useState();
+  const [city, setCity] = useState("");
+  const [image, setImage] = useState("");
   const [checkBox, setCheckBox] = useState(true);
   const [userInfo, setUserInfo] = useState({
-    roles: store.clientInfo.roles,
-    name: store.clientInfo.name,
-    surname: store.clientInfo.surname,
-    email: store.clientInfo.email,
-    avatar: store.clientInfo.avatar,
-    description: store.clientInfo.description,
-    password: store.clientInfo.password,
-    city: store.clientInfo.city,
-    latitude: store.clientInfo.latitude,
-    longitude: store.clientInfo.longitude,
+    roles: clientInfo.roles,
+    name: clientInfo.name,
+    surname: clientInfo.surname,
+    email: clientInfo.email,
+    avatar: clientInfo.avatar,
+    description: clientInfo.description,
+    password: clientInfo.password,
+    city: clientInfo.city,
+    latitude: clientInfo.latitude,
+    longitude: clientInfo.longitude,
   });
 
   const changeCity = () => {
@@ -56,9 +56,9 @@ export const UserForm = ({ handleOpenModal, getClientInfo }) => {
   };
 
   const handleUpload = async () => {
-    const data = await actions.uploadImage(image)
-    setUserInfo({ ...userInfo, avatar: data.url})
-    setCheckBox(false)
+    const data = await actions.uploadImage(image);
+    setUserInfo({ ...userInfo, avatar: data.url });
+    setCheckBox(false);
   };
 
   return (
@@ -235,9 +235,9 @@ export const UserForm = ({ handleOpenModal, getClientInfo }) => {
           type="file"
           onChange={(e) => handleChangeImage(e)}
         />
-        {checkBox && <i className="fa-solid fa-check"
-          onClick={handleUpload}
-        ></i>}
+        {checkBox && (
+          <i className="fa-solid fa-check" onClick={handleUpload}></i>
+        )}
       </div>
       <label className="fs-5 fw-bold">Descripción</label>
       <input
@@ -246,13 +246,6 @@ export const UserForm = ({ handleOpenModal, getClientInfo }) => {
         onChange={(e) =>
           setUserInfo({ ...userInfo, description: e.target.value })
         }
-      />
-      <label className="fs-5 fw-bold">Password</label>
-      <input
-        type="password"
-        className="col-8"
-        value={userInfo.password}
-        onChange={(e) => setUserInfo({ ...userInfo, password: e.target.value })}
       />
       <a
         className="btn btn-dark rounded-pill px-3 text-white"
