@@ -103,7 +103,7 @@ export const Servicios = () => {
   };
 
   return (
-    <div className="padre">
+    <div className="mt-4">
       <section id="header" className="jumbotron text-center">
         <h3 className="display-3">Servicios</h3>
         <h5 className="aaa fs-4">Encuentra al cuidador que más te guste</h5>
