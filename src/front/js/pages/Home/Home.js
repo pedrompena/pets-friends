@@ -5,6 +5,7 @@ import { About } from "./component/About/About";
 import { Services } from "./component/Services/Services";
 import { Gallery } from "./component/Gallery/Gallery";
 import { Contact } from "./component/Contact/Contact";
+import { Footer } from "../../component/footer/Footer";
 
 import bone from "../../../img/bone.png";
 import paw from "../../../img/paw.png";
@@ -46,35 +47,38 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="position-relative container mb-5" ref={homeRef}>
-      {toys?.map((toy) => (
-        <img
-          key={toy.id}
-          style={{ top: toy.y, left: toy.x, zIndex: -1, opacity: 0.3 }}
-          className="position-absolute"
-          width="50px"
-          src={toy.img}
-        />
-      ))}
+    <>
+      <div className="position-relative container mb-5" ref={homeRef}>
+        {toys?.map((toy) => (
+          <img
+            key={toy.id}
+            style={{ top: toy.y, left: toy.x, zIndex: -1, opacity: 0.3 }}
+            className="position-absolute"
+            width="50px"
+            src={toy.img}
+          />
+        ))}
 
-      <div id="hero" className="pt-5">
-        <Hero />
-      </div>
+        <div id="hero" className="pt-5">
+          <Hero />
+        </div>
 
-      <div id="about" className="pt-5">
-        <About />
-      </div>
+        <div id="about" className="pt-5">
+          <About />
+        </div>
 
-      <div id="services" className="pt-5">
-        <Services />
-      </div>
+        <div id="services" className="pt-5">
+          <Services />
+        </div>
 
-      <div id="gallery" className="pt-5">
-        <Gallery />
+        <div id="gallery" className="pt-5">
+          <Gallery />
+        </div>
+        <div id="contact" className="pt-5">
+          <Contact />
+        </div>
       </div>
-      <div id="contact" className="pt-5">
-        <Contact />
-      </div>
-    </div>
+      <Footer />
+    </>
   );
 };

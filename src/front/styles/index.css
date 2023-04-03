@@ -330,3 +330,12 @@ body {
   cursor: pointer;
   scale: 1.05;
 }
+
+.fa-check:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.non-chat {
+  font-family: "Comfortaa";
+}

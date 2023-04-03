@@ -6,9 +6,13 @@ export const Navbar = () => {
   const [onSession, setOnSession] = useState(false);
   const { store, actions } = useContext(Context);
 
+  const handleLogout = () => {
+    actions.logout();
+  };
+
   useEffect(() => {
-    store.clientInfo !== null ? setOnSession(true) : setOnSession(false);
-  }, []);
+    store.clientInfo?.id ? setOnSession(true) : setOnSession(false);
+  }, [store.clientInfo]);
 
   return (
     <nav className="fixed-top navbar navbar-expand-lg bg-body-tertiary">
@@ -58,7 +62,7 @@ export const Navbar = () => {
                 </li>
                 <li className="nav-item">
                   {/* a este agregar funcion para cerrar sesion */}
-                  <Link className="nav-link" to="/signup">
+                  <Link onClick={handleLogout} className="nav-link" to="/">
                     Cerrar sesión
                   </Link>
                 </li>

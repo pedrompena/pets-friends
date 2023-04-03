@@ -1,22 +1,32 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Context } from "../../store/appContext";
 import { ChatList } from "./component/Chats/ChatList";
 import { ServicesPets } from "./component/ServicesPets/ServicesPets";
 import { UserInfo } from "./component/UserInfo/UserInfo";
 
 export const Dashboard = () => {
-  const { id } = useParams();
-  return (
-    <div className="container mt-3 pt-5 d-flex">
-      <div className="col-5 mt-4">
-        <UserInfo id={id} />
-      </div>
-      <div className="col-8">
+  const { store } = useContext(Context);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (store.clientInfo?.id) {
+      setLoading(false);
+    }
+  }, [store.clientInfo]);
+
+  return !loading ? (
+    <div
+      style={{ height: "100vh" }}
+      className="position-relative mt-5 d-flex flex-wrap gap-2 justify-content-center align-items-center"
+    >
+      <UserInfo />
+
+      <div className="dashboard-content">
         <ServicesPets />
-        <div id="/chat">
         <ChatList />
-        </div>
       </div>
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 };

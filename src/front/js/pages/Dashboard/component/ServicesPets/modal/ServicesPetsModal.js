@@ -1,25 +1,21 @@
 import React, { useContext } from "react";
 import { Context } from "../../../../../store/appContext";
-import { PetForm } from "./component/PetForm";
-import { ServiceForm } from "./component/ServiceForm";
+import { Modal } from "../../Modal";
+import { PetForm } from "./PetForm";
+import { ServiceForm } from "./ServiceForm";
 
-export const ServicesPetsModal = ({ handleOpenModal, getItems }) => {
+export const ServicesPetsModal = ({ item, handleOpen, getItems }) => {
   const { store } = useContext(Context);
+
+  const user = store.clientInfo;
+
   return (
-    <div className="content">
-      <div className="dashboard-box container mt-4 mb-4 p-3 d-flex flex-column align-items-center bg-white col-4 gap-3">
-        <div className="w-100 d-flex justify-content-end">
-          <i
-            className="fa-solid fa-xmark p-2 close-button"
-            onClick={handleOpenModal}
-          ></i>
-        </div>
-        {store.clientInfo.roles === "Owner" ? (
-          <PetForm handleOpenModal={handleOpenModal} getItems={getItems} />
-        ) : (
-          <ServiceForm handleOpenModal={handleOpenModal} getItems={getItems} />
-        )}
-      </div>
-    </div>
+    <Modal handleOpen={handleOpen}>
+      {user.rol === "carer" ? (
+        <ServiceForm handleOpen={handleOpen} getItems={getItems} item={item} />
+      ) : (
+        <PetForm handleOpen={handleOpen} getItems={getItems} item={item} />
+      )}
+    </Modal>
   );
 };

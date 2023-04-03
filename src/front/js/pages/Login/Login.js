@@ -31,9 +31,10 @@ export const Login = () => {
         }
       })
       .then((result) => {
-        navigate(`/dashboard/${result.client_info.id}`);
+        actions.getUserInfo(result.client_info.id);
+        navigate("/dashboard");
       })
-      .catch((error) => alert("Ha ocurrido un error", error));
+      .catch((error) => console.log(error));
   };
 
   return (

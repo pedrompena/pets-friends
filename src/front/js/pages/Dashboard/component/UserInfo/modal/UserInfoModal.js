@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../../../../../store/appContext";
 import { Modal } from "../../Modal";
 
-export const UserInfoModal = ({ handleOpenModal, getClientInfo, user }) => {
+export const UserInfoModal = ({ handleOpenModal, user }) => {
   const { store, actions } = useContext(Context);
   const [image, setImage] = useState("");
   const [checkBox, setCheckBox] = useState(true);
@@ -21,7 +21,7 @@ export const UserInfoModal = ({ handleOpenModal, getClientInfo, user }) => {
       options
     );
     const data = await resp.json();
-    data && getClientInfo();
+    data && actions.getUserInfo();
     handleOpenModal();
   };
 
@@ -43,7 +43,7 @@ export const UserInfoModal = ({ handleOpenModal, getClientInfo, user }) => {
           surname: user.surname,
           description: user.description || "",
           city: user.city,
-          avatar: image,
+          avatar: user.avatar || image,
           password: "",
         }}
         onSubmit={(values, { resetForm }) => {

@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       BACKEND_URL: process.env.BACKEND_URL,
-      clientInfo: null,
+      clientInfo: {},
     },
     actions: {
       setClientInfo: () => {
@@ -32,6 +32,16 @@ const getState = ({ getStore, getActions, setStore }) => {
         );
         const data = await resp.json();
         return data;
+      },
+      getUserInfo: async (id) => {
+        const resp = await fetch(
+          `${getStore().BACKEND_URL}/api/clients/${
+            getStore().clientInfo.id || id
+          }`
+        );
+        const data = await resp.json();
+        data && getActions().setLocalStorage(data.result);
+        data && getActions().setClientInfo();
       },
     },
   };

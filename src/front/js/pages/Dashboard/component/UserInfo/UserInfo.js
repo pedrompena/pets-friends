@@ -1,29 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../../../../store/appContext";
 import { UserInfoModal } from "./modal/UserInfoModal";
 
-export const UserInfo = ({ id }) => {
-  const [user, setUser] = useState({});
+export const UserInfo = () => {
   const [openModal, setOpenModal] = useState(false);
+  const { store } = useContext(Context);
 
-  const { store, actions } = useContext(Context);
-  const getUserInfo = async () => {
-    const resp = await fetch(`${store.BACKEND_URL}/api/clients/${id}`);
-    const data = await resp.json();
-    actions.setLocalStorage(data.result);
-    setUser(data.result);
-  };
-
-  useEffect(() => {
-    getUserInfo();
-  }, []);
+  const user = store.clientInfo;
 
   const handleOpenModal = () => {
     setOpenModal(!openModal);
   };
 
   return (
-    <div className="box profile-user-info d-flex flex-column justify-content-evenly align-items-center">
+    <div className="mt-5 box profile-user-info d-flex flex-column justify-content-evenly align-items-center">
       <div className="user-img rounded-circle overflow-hidden d-flex align-items-center justify-content-center">
         <img width="250px" src={user.avatar} />
       </div>
@@ -44,7 +34,6 @@ export const UserInfo = ({ id }) => {
       {openModal && (
         <UserInfoModal
           handleOpenModal={handleOpenModal}
-          getClientInfo={getUserInfo}
           user={user}
         />
       )}
