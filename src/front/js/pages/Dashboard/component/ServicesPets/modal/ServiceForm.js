@@ -13,7 +13,7 @@ export const ServiceForm = ({ item, handleOpen, getItems }) => {
 
   useEffect(() => {
     if (item.id) {
-      setUrl(`/api/pets/${item.id}`);
+      setUrl(`/api/services/${item.id}`);
       setOptions({
         method: "PUT",
         headers: {
@@ -22,7 +22,7 @@ export const ServiceForm = ({ item, handleOpen, getItems }) => {
         body: "",
       });
     } else {
-      setUrl(`/api/pets`);
+      setUrl(`/api/services`);
       setOptions({
         method: "POST",
         headers: {
@@ -60,9 +60,11 @@ export const ServiceForm = ({ item, handleOpen, getItems }) => {
     <Formik
       initialValues={{
         image: item.image || "",
-        name: item.name || "",
+        title: item.title || "",
+        price: item.price || "",
+        service_type: item.service_type || "",
         description: item.description || "",
-        owner_id: user.id,
+        carer_id: user.id,
       }}
       onSubmit={(values, { resetForm }) => {
         saveInfo(values);
@@ -86,19 +88,49 @@ export const ServiceForm = ({ item, handleOpen, getItems }) => {
               onClick={() => handleUpload(setFieldValue)}
             ></i>
           )}
-          <label className="fw-bold" htmlFor="name">
-            Nombre
+          <label className="fw-bold" htmlFor="title">
+            Titulo
           </label>
           <input
             className="rounded"
             type="text"
-            id="name"
-            name="name"
-            placeholder="Milka"
+            id="title"
+            name="title"
+            placeholder="Paseo divertido"
             value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
           />
+          <label className="fw-bold" htmlFor="price">
+            Precio
+          </label>
+          <input
+            className="rounded"
+            type="number"
+            id="price"
+            name="price"
+            placeholder="15"
+            value={values.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <label className="fw-bold" htmlFor="type">
+            Tipo de servicio
+          </label>
+          <select
+                className="rounded"
+                id="type"
+                name="type"
+                value={values.service_type}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              >
+                <option>Selecciona un tipo de servicio</option>
+                <option value="type_1">Paseo de 30 m</option>
+                <option value="type_2">Paseo de 1 h</option>
+                <option value="type_3">Cuidado Integral (+8 h)</option>
+                <option value="type_4">Servicio personalizado</option>
+              </select>
           <label className="fw-bold" htmlFor="description">
             Descripción
           </label>
@@ -107,7 +139,7 @@ export const ServiceForm = ({ item, handleOpen, getItems }) => {
             type="text"
             id="description"
             name="description"
-            placeholder="La mejor mascota del mundo!"
+            placeholder="Un paseo super divertido por zonas cercanas a tu hogar"
             value={values.description}
             onChange={handleChange}
             onBlur={handleBlur}
