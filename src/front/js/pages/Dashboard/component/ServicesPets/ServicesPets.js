@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../../../store/appContext";
 import { ServicesPetsModal } from "./modal/ServicesPetsModal";
 import { EditPetsModal } from "./modal/EditPetsModal";
-import "./servicespets.css";
 
 export const ServicesPets = () => {
   const { store, actions } = useContext(Context);
@@ -20,9 +19,9 @@ export const ServicesPets = () => {
     let url;
     /*llama a la API de pets por owner o por carer y se almacena en items*/
     if (store.clientInfo.roles === "Owner") {
-      url = `api/pets_by_owner/${store.clientInfo.id}`;
+      url = `/api/pets_by_owner/${store.clientInfo.id}`;
     } else {
-      url = `api/services_by_carer/${store.clientInfo.id}`;
+      url = `/api/services_by_carer/${store.clientInfo.id}`;
     }
     const resp = await fetch(`${store.BACKEND_URL}${url}`);
     const data = await resp.json();
@@ -38,7 +37,7 @@ export const ServicesPets = () => {
       },
       body: JSON.stringify("hemos hecho borrado"),
     };
-    const resp = await fetch(`${store.BACKEND_URL}api/pets/${id}`, options);
+    const resp = await fetch(`${store.BACKEND_URL}/api/pets/${id}`, options);
     const data = await resp.json();
 
     /*Si todo esta bien data=OK*/
@@ -53,7 +52,7 @@ export const ServicesPets = () => {
       },
       body: JSON.stringify("hemos hecho borrado de servicio"),
     };
-    const resp = await fetch(`${store.BACKEND_URL}api/services/${id}`, options);
+    const resp = await fetch(`${store.BACKEND_URL}/api/services/${id}`, options);
     const data = await resp.json();
 
     /*Si todo esta bien data=OK*/

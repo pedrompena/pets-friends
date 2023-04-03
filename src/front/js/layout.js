@@ -2,14 +2,15 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
-import { Registro } from "./pages/Registro/Registro";
-import { InicioSesion } from "./pages/InicioSesion/InicioSesion";
+import { Signup } from "./pages/Signup/Signup";
+import { Login } from "./pages/Login/Login";
 import { Servicios } from "./pages/Servicios/Servicios";
 import { Owner } from "./pages/Perfil/Owner/Owner";
 import { Carer } from "./pages/Perfil/Carer/Carer";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar/Navbar";
+import { Footer } from "./component/footer/Footer";
 
 import { Home } from "./pages/Home/Home";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
@@ -26,14 +27,15 @@ const Layout = () => {
             <Navbar />
             <Routes>
               <Route element={<Home />} path="/" />
-              <Route element={<Registro />} path="/registro" />
-              <Route element={<InicioSesion />} path="/iniciosesion" />
+              <Route element={<Signup />} path="/signup" />
+              <Route element={<Login />} path="/login" />
               <Route element={<Servicios />} path="/servicios/:id" />
               <Route element={<Carer />} path="/carer/:id" />
               <Route element={<Owner />} path="/owner" />
               <Route element={<Dashboard />} path="/dashboard/:id" />
               <Route element={<h1>Not found!</h1>} />
             </Routes>
+            <Footer />
           </ScrollToTop>
         </BrowserRouter>
       </SocketProvider>

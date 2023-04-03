@@ -1,114 +1,84 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../../store/appContext";
-import "./navbar.css";
 
 export const Navbar = () => {
+  const [onSession, setOnSession] = useState(false);
   const { store, actions } = useContext(Context);
 
-  return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary p-3 fs-5 fixed-top" id="navbarPet">
-      <div
-        className="collapse navbar-collapse justify-content-center"
-        id="navbarNavDropdown"
-      >
-        <div className="inicioHome" id="inicioHome">
-          <a href="/#inicio" className="navbar-brand fs-4">
-            Inicio
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-        </div>
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="/#sobre">
-              Sobre Pet Friends
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/#servicios">
-              Servicios
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/#carrusel">
-              Galería
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/#contacto">
-              Contacto
-            </a>
-          </li>
-          <li className="nav-item dropdown" id="nav-item-dropdown">
-            {store.clientInfo ? (
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Menú
-              </a>
-            ) : (
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Iniciar sesión
-              </a>
-            )}
+  useEffect(() => {
+    store.clientInfo !== null ? setOnSession(true) : setOnSession(false);
+  }, []);
 
-            {store.clientInfo ? (
-              <ul className="dropdown-menu">
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to={`/dashboard/${store.clientInfo.id}`}
-                  >
+  return (
+    <nav className="fixed-top navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="/#hero">
+          Inicio
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a className="nav-link" href="/#about">
+                Sobre Pets Friends
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/#services">
+                Servicios
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/#gallery">
+                Galería
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/#contact">
+                Contacto
+              </a>
+            </li>
+            {onSession ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/dashboard">
                     Mi perfil
                   </Link>
                 </li>
-
-                <li>
-                  <Link
-                    className="dropdown-item"
-                    to="/"
-                    onClick={() => actions.logout()}
-                  >
+                <li className="nav-item">
+                  {/* a este agregar funcion para cerrar sesion */}
+                  <Link className="nav-link" to="/signup">
                     Cerrar sesión
                   </Link>
                 </li>
-              </ul>
+              </>
             ) : (
-              <ul className="dropdown-menu">
-                <li>
-                  <Link className="dropdown-item" to="/iniciosesion">
-                    Iniciar sesión
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    Inicia Sesión
                   </Link>
                 </li>
-                <li>
-                  <Link className="dropdown-item" to="/registro">
-                    Registrarme
+                <li className="nav-item">
+                  <Link className="nav-link" to="/signup">
+                    Regístrate
                   </Link>
                 </li>
-              </ul>
+              </>
             )}
-          </li>
-        </ul>
+          </ul>
+        </div>
       </div>
     </nav>
   );

@@ -1,22 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../../../store/appContext";
 import { UserInfoModal } from "./modal/UserInfoModal";
-import "./userinfo.css";
 
 export const UserInfo = ({ id }) => {
-  const [clientInfo, setClientInfo] = useState({});
+  const [user, setUser] = useState({});
   const [openModal, setOpenModal] = useState(false);
 
   const { store, actions } = useContext(Context);
-  const getClientInfo = async () => {
-    const resp = await fetch(`${store.BACKEND_URL}api/clients/${id}`);
+  const getUserInfo = async () => {
+    const resp = await fetch(`${store.BACKEND_URL}/api/clients/${id}`);
     const data = await resp.json();
-    actions.setLocalStorage(data.result)
-    setClientInfo(data.result);
+    actions.setLocalStorage(data.result);
+    setUser(data.result);
   };
- 
+
   useEffect(() => {
-    getClientInfo()
+    getUserInfo();
   }, []);
 
   const handleOpenModal = () => {
@@ -24,23 +23,31 @@ export const UserInfo = ({ id }) => {
   };
 
   return (
-    <div className="dashboard-box container mt-4 mb-4 py-5 gap-3 d-flex flex-column align-items-center bg-white">
-      <div className="img-container" id="iContainer">
-        <img className="img-fluid rounded-circle" src={clientInfo.avatar} />
+    <div className="box profile-user-info d-flex flex-column justify-content-evenly align-items-center">
+      <div className="user-img rounded-circle overflow-hidden d-flex align-items-center justify-content-center">
+        <img width="250px" src={user.avatar} />
       </div>
-      <p className="fs-2 fw-bold">
-        {clientInfo.name} {clientInfo.surname},{" "}
-        <span className="text-muted fs-5">{clientInfo.city}</span>
-      </p>
-      <p className="fs-4 text-muted">{clientInfo.email}</p>
-      <p className="fs-5">{clientInfo.description}</p>
-      <a
-        className="btn btn-dark text-white rounded-pill px-3 mb-2 fs-5"
+      <div className="d-flex jutify-content-center align-items-center flex-column">
+        <h2 className="w-100 text-center user-name fs-1 fw-bold">
+          {user.name} {user.surname}
+        </h2>
+        <p className="text-muted fw-semibold"> {user.email}</p>
+        <p className="text-muted fw-semibold">📍 {user.city}</p>
+      </div>
+      <p className="text-center">{user.description}</p>
+      <button
         onClick={handleOpenModal}
+        className="btn btn-dark px-3 rounded-pill"
       >
         Editar Perfil
-      </a>
-      {openModal && <UserInfoModal handleOpenModal={handleOpenModal} getClientInfo={getClientInfo} clientInfo={clientInfo} />}
+      </button>
+      {openModal && (
+        <UserInfoModal
+          handleOpenModal={handleOpenModal}
+          getClientInfo={getUserInfo}
+          user={user}
+        />
+      )}
     </div>
   );
 };

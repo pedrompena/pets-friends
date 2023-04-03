@@ -75,6 +75,7 @@
 	"dependencies": {
 		"@sefailyasoz/react-carousel": "^1.1.1",
 		"carousel-react-rcdev": "^0.0.5",
+		"formik": "^2.2.9",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
 		"react-bootstrap-carousel": "^4.1.1",

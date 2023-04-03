@@ -1,39 +1,51 @@
 import React from "react";
-import "./contact.css";
-import pedro from "../../../../../img/pedro.jpg";
-import manudos from "../../../../../img/manudos.jpg";
-import irene from "../../../../../img/irene.jpg";
+import PedroImage from "../../../../../img/pedro.jpg";
+import IreneImage from "../../../../../img/irene.jpg";
+import ManuelImage from "../../../../../img/manuel.jpg";
+
+const petFriendsTeam = [
+  {
+    name: "Pedro",
+    surname: "Peña",
+    img: PedroImage,
+    url: "https://github.com/pedrompena",
+  },
+  {
+    name: "Irene",
+    surname: "Quero",
+    img: IreneImage,
+    url: "https://github.com/IreneQuero",
+  },
+  {
+    name: "Manuel",
+    surname: "Cabrera",
+    img: ManuelImage,
+    url: "https://github.com/Manuquim",
+  },
+];
 
 export const Contact = () => {
   return (
-    <div className="contact container">
-      <div className="letrero d-flex justify-content-center">
-        <h1 className="fw-bold">Contacta con el equipo de PET FRIENDS</h1>
-        <br />
+    <div className="box contact">
+      <h2 className="text-center fs-1 fw-bold">contacta con nosotros</h2>
+      <div className="d-flex mt-5 flex-wrap justify-content-evenly align-items-center">
+        {petFriendsTeam.map((person) => (
+          <div className="card-team" key={person.name}>
+            <a href={person.url} target="_blank">
+              <div className="rounded-circle overflow-hidden border border-2 border-dark">
+                <img
+                  width="200px"
+                  className="rounded-cirlce"
+                  src={person.img}
+                />
+              </div>
+              <p className="text-center text-dark fw-bold fs-2">
+                {person.name} {person.surname}
+              </p>
+            </a>
+          </div>
+        ))}
       </div>
-      <div className="h3 d-flex justify-content-center">
-        <h3>info@petfriends.com</h3>
-      </div>
-      <div className="d-flex justify-content-evenly">
-        <div className="text-center">
-          <img className="pedro" src={pedro} alt="imagen de los fundadores" />
-          <p className="fs-4 group-names">Pedro Peña</p>
-        </div>
-        <div className="text-center">
-          <img
-            className="manudos"
-            src={manudos}
-            alt="imagen de los fundadores"
-          />
-          <p className="fs-4 group-names">Manuel Cabrera</p>
-        </div>
-        <div className="text-center">
-          <img className="irene" src={irene} alt="imagen de los fundadores" />
-          <p className="fs-4 group-names">Irene Quero</p>
-        </div>
-      </div>
-      <div className="fotos d-flex justify-content-around"></div>
-      <div className="names d-flex justify-content-around"></div>
     </div>
   );
 };

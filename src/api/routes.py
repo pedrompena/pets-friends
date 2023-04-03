@@ -59,16 +59,13 @@ def get_client(client_id):
 def register_client():
     try:
         request_body = request.get_json()
-        client = Clients(roles=request_body['roles'],
+        client = Clients(rol=request_body['rol'],
                         name=request_body['name'],
                         surname=request_body['surname'],
                         email=request_body['email'],
                         password=request_body['password'],
-                        city=request_body['ciudad'],
-                        latitude=request_body['latitude'],
-                        longitude=request_body['longitude'])
-    
-
+                        city=request_body['city'],
+                        )    
         db.session.add(client)
         db.session.commit()
         return jsonify("usuario creado"), 200
@@ -95,7 +92,6 @@ def update_client(client_id):
     if client is None:
         return 'Not found', 404
 
-    client.roles = request.json.get('roles', client.roles)
     client.name = request.json.get('name', client.name)
     client.surname = request.json.get('surname', client.surname)
     client.email = request.json.get('email', client.email)
@@ -103,8 +99,6 @@ def update_client(client_id):
     client.avatar = request.json.get('avatar', client.avatar)
     client.description = request.json.get('description', client.description)
     client.city = request.json.get('city', client.city)
-    client.latitude = request.json.get('latitude', client.latitude)
-    client.longitude = request.json.get('longitude', client.longitude)
     db.session.commit()
 
     response_body = {"client" : client.serialize()}

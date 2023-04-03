@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       BACKEND_URL: process.env.BACKEND_URL,
-      clientInfo: {},
+      clientInfo: null,
     },
     actions: {
       setClientInfo: () => {
@@ -27,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
 
         const resp = await fetch(
-          getStore().BACKEND_URL + "api/upload",
+          getStore().BACKEND_URL + "/api/upload",
           options
         );
         const data = await resp.json();
