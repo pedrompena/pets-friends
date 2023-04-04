@@ -1,15 +1,33 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../../../store/appContext";
+import { Chat } from "./modal/Chat";
 
 export const ChatList = () => {
   const { store } = useContext(Context);
   const [chatList, setChatList] = useState([]);
+  const [openChat, setOpenChat] = useState(false);
+  const [chatInfo, setChatInfo] = useState({
+    id: "",
+    name: "",
+    surname: "",
+    avatar: "",
+  });
   const user = store.clientInfo;
 
   const getChatList = async () => {
     const resp = await fetch(`${store.BACKEND_URL}/api/chats/${user.id}`);
     const data = await resp.json();
     data && setChatList(data.results);
+  };
+
+  const handleOpenChat = (chatId, chatName, chatSurname, chatAvatar) => {
+    setChatInfo({
+      id: chatId,
+      name: chatName,
+      surname: chatSurname,
+      avatar: chatAvatar,
+    });
+    setOpenChat(!openChat);
   };
 
   useEffect(() => {
@@ -42,8 +60,11 @@ export const ChatList = () => {
 
           return (
             <div
+              onClick={() =>
+                handleOpenChat(chat.id, user_name, user_surname, user_img)
+              }
               key={chat.id}
-              className="item-card mx-2 w-100 d-flex align-items-center gap-3 px-2 rounded"
+              className="chat-card item-card mx-2 w-100 d-flex align-items-center gap-3 px-2 rounded"
             >
               <div className="item-card-img-container rounded-circle overflow-hidden bg-dark d-flex justify-content-center align-items-center">
                 <img width="120px" src={user_img} />
@@ -54,6 +75,15 @@ export const ChatList = () => {
             </div>
           );
         })
+      )}
+      {openChat && (
+        <Chat
+          handleOpen={handleOpenChat}
+          chatId={chatInfo.id}
+          chatAvatar={chatInfo.avatar}
+          chatName={chatInfo.name}
+          chatSurname={chatInfo.surname}
+        />
       )}
     </div>
   );

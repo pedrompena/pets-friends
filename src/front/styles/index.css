@@ -339,3 +339,28 @@ body {
 .non-chat {
   font-family: "Comfortaa";
 }
+
+.chat-avatar {
+  max-width: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  min-height: 50px;
+}
+
+.chat-box {
+  min-width: 350px;
+  max-width: 350px;
+  min-height: 400px;
+  max-height: 400px;
+  background-color: #faece1;
+  overflow: auto;
+}
+
+.chat-title {
+  font-family: "Comfortaa";
+}
+
+.chat-card:hover {
+  scale: 1.01;
+  cursor: pointer;
+}
