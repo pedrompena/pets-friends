@@ -4,9 +4,8 @@ import ScrollToTop from "./component/scrollToTop";
 
 import { Signup } from "./pages/Signup/Signup";
 import { Login } from "./pages/Login/Login";
-import { Servicios } from "./pages/Servicios/Servicios";
-import { Owner } from "./pages/Perfil/Owner/Owner";
-import { Carer } from "./pages/Perfil/Carer/Carer";
+import { Services } from "./pages/Services/Services";
+import { Profile } from "./pages/Profile/Profile";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar/Navbar";
@@ -28,9 +27,8 @@ const Layout = () => {
               <Route element={<Home />} path="/" />
               <Route element={<Signup />} path="/signup" />
               <Route element={<Login />} path="/login" />
-              <Route element={<Servicios />} path="/servicios/:id" />
-              <Route element={<Carer />} path="/carer/:id" />
-              <Route element={<Owner />} path="/owner" />
+              <Route element={<Services />} path="/services" />
+              <Route element={<Profile />} path="/profile/:id" />
               <Route element={<Dashboard />} path="/dashboard" />
               <Route element={<h1>Not found!</h1>} />
             </Routes>

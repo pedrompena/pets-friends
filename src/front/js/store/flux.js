@@ -36,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       getUserInfo: async (id) => {
         const resp = await fetch(
           `${getStore().BACKEND_URL}/api/clients/${
-            getStore().clientInfo.id || id
+            id || getStore().clientInfo.id
           }`
         );
         const data = await resp.json();

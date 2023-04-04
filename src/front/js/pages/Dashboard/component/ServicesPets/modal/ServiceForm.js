@@ -114,13 +114,13 @@ export const ServiceForm = ({ item, handleOpen, getItems }) => {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          <label className="fw-bold" htmlFor="type">
+          <label className="fw-bold" htmlFor="service_type">
             Tipo de servicio
           </label>
           <select
                 className="rounded"
-                id="type"
-                name="type"
+                id="service_type"
+                name="service_type"
                 value={values.service_type}
                 onChange={handleChange}
                 onBlur={handleBlur}

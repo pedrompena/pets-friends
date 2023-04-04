@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Chat } from "./modal/Chat";
 import { Context } from "../../../../store/appContext";
-import { ChatCard } from "./component/ChatCard";
 
 export const ChatList = () => {
   const { store } = useContext(Context);
@@ -11,7 +9,7 @@ export const ChatList = () => {
   const getChatList = async () => {
     const resp = await fetch(`${store.BACKEND_URL}/api/chats/${user.id}`);
     const data = await resp.json();
-    setChatList(data.results);
+    data && setChatList(data.results);
   };
 
   useEffect(() => {
@@ -21,22 +19,26 @@ export const ChatList = () => {
   return (
     <div className="box d-flex flex-column gap-2 flex-wrap justify-content-evenly align-items-center">
       <h2 className="fw-bold fs-1 items-title">mensajes</h2>
-      {chatList !== [] ? (
-        <div className="non-chat"><i className="fa-regular fa-comments"></i> Aun no tienes ningun chat!</div>
+      {chatList.length < 1 ? (
+        <div className="non-chat">
+          <i className="fa-regular fa-comments"></i> Aun no tienes ningun chat!
+        </div>
       ) : (
-        chatList.map((chat) => {
+        chatList?.map((chat) => {
           const user_name =
-            chat.user_1_name === user.name
-              ? chat.user_2_name
-              : chat.user_1_name;
+            chat.client_1_name === user.name
+              ? chat.client_2_name
+              : chat.client_1_name;
 
           const user_surname =
-            chat.user_1_surname === user.surname
-              ? chat.user_2_surname
-              : chat.user_1_surname;
+            chat.client_1_surname === user.surname
+              ? chat.client_2_surname
+              : chat.client_1_surname;
 
           const user_img =
-            chat.user_1_img === user.img ? chat.user_2_img : chat.user_1_img;
+            chat.client_1_avatar === user.avatar
+              ? chat.client_2_avatar
+              : chat.client_1_avatar;
 
           return (
             <div
