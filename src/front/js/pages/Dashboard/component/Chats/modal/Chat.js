@@ -51,7 +51,7 @@ export const Chat = ({
         <div className="chat-avatar overflow-hidden rounded-circle">
           <img
             width="60px"
-            src={chatAvatar}
+            src={chatAvatar || "https://res.cloudinary.com/dpnb8zw1d/image/upload/v1680636124/user_vy0sxx.jpg"}
           />
         </div>
         <span className="chat-title fw-bold fs-5">{chatName} {chatSurname}</span>

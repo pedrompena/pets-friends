@@ -67,7 +67,7 @@ export const ChatList = () => {
               className="chat-card item-card mx-2 w-100 d-flex align-items-center gap-3 px-2 rounded"
             >
               <div className="item-card-img-container rounded-circle overflow-hidden bg-dark d-flex justify-content-center align-items-center">
-                <img width="120px" src={user_img} />
+                <img width="120px" src={user_img || "https://res.cloudinary.com/dpnb8zw1d/image/upload/v1680636124/user_vy0sxx.jpg"} />
               </div>
               <h3 className="fs-4 fw-bold">
                 {user_name} {user_surname}

@@ -15,7 +15,7 @@ export const UserInfo = () => {
   return (
     <div className="mt-5 box profile-user-info d-flex flex-column justify-content-evenly align-items-center">
       <div className="user-img rounded-circle overflow-hidden d-flex align-items-center justify-content-center">
-        <img width="250px" src={user.avatar} />
+        <img width="250px" src={user.avatar || "https://res.cloudinary.com/dpnb8zw1d/image/upload/v1680636124/user_vy0sxx.jpg"} />
       </div>
       <div className="d-flex jutify-content-center align-items-center flex-column">
         <h2 className="w-100 text-center user-name fs-1 fw-bold">

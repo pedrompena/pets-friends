@@ -84,13 +84,19 @@ export const Profile = () => {
       <div className="container d-flex flex-wrap justify-content-center gap-3 aling-items-center">
         <div className="box profile-user-info d-flex flex-column justify-content-evenly align-items-center">
           <div className="user-img rounded-circle overflow-hidden d-flex align-items-center justify-content-center">
-            <img width="250px" src={user.img} />
+            <img
+              width="250px"
+              src={
+                user.avatar ||
+                "https://res.cloudinary.com/dpnb8zw1d/image/upload/v1680636124/user_vy0sxx.jpg"
+              }
+            />
           </div>
           <div className="d-flex jutify-content-center align-items-center flex-column">
             <h2 className="w-100 text-center user-name fs-1 fw-bold">
               {user.name} {user.surname}
             </h2>
-            <p className="text-muted fw-semibold">📍 {user.city}</p>
+            <p className="text-muted fw-semibold">{user.city}</p>
           </div>
           <p className="text-center">{user.description}</p>
           {user.rol === "carer" && (
@@ -114,7 +120,13 @@ export const Profile = () => {
                   className="item-card mx-2 w-100 d-flex align-items-center gap-2 px-2 rounded"
                 >
                   <div className="item-card-img-container rounded-circle overflow-hidden bg-dark d-flex justify-content-center align-items-center">
-                    <img width="120px" src={item.image} />
+                    <img
+                      width="120px"
+                      src={
+                        item.image ||
+                        "https://res.cloudinary.com/dpnb8zw1d/image/upload/v1680636392/14669667_5508800_arspvr.jpg"
+                      }
+                    />
                   </div>
                   <div className="w-100">
                     <div className="w-100 d-flex justify-content-around">
@@ -130,7 +142,13 @@ export const Profile = () => {
                   className="item-card mx-2 w-100 d-flex align-items-center gap-2 px-2 rounded"
                 >
                   <div className="item-card-img-container rounded-circle overflow-hidden bg-dark d-flex justify-content-center align-items-center">
-                    <img width="120px" src={item.image} />
+                    <img
+                      width="120px"
+                      src={
+                        item.image ||
+                        "https://res.cloudinary.com/dpnb8zw1d/image/upload/v1680636392/14669667_5508800_arspvr.jpg"
+                      }
+                    />
                   </div>
                   <div className="w-100">
                     <div className="w-100 d-flex justify-content-around">

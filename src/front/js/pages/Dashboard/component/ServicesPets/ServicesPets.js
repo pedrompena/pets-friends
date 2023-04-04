@@ -11,18 +11,18 @@ export const ServicesPets = () => {
   });
 
   const user = store.clientInfo;
-  
+
   const getItems = async () => {
-      let url;
-      if (user.rol !== "carer") {
-        url = `/api/pets_by_owner/${user.id}`;
-      } else {
-        url = `/api/services_by_carer/${user.id}`;
-      }
-      
-      const resp = await fetch(`${store.BACKEND_URL}${url}`);
-      const data = await resp.json();
-      setItems(data.results);
+    let url;
+    if (user.rol !== "carer") {
+      url = `/api/pets_by_owner/${user.id}`;
+    } else {
+      url = `/api/services_by_carer/${user.id}`;
+    }
+
+    const resp = await fetch(`${store.BACKEND_URL}${url}`);
+    const data = await resp.json();
+    setItems(data.results);
   };
 
   const deleteItem = async (id) => {
@@ -67,7 +67,13 @@ export const ServicesPets = () => {
             className="position-relative item-card mx-2 w-100 d-flex align-items-center gap-2 px-2 rounded"
           >
             <div className="item-card-img-container rounded-circle overflow-hidden bg-dark d-flex justify-content-center align-items-center">
-              <img width="120px" src={item.img} />
+              <img
+                width="120px"
+                src={
+                  item.image ||
+                  "https://res.cloudinary.com/dpnb8zw1d/image/upload/v1680636392/14669667_5508800_arspvr.jpg"
+                }
+              />
             </div>
             <div className="w-100">
               <div className="d-flex justify-content-around">
@@ -93,7 +99,13 @@ export const ServicesPets = () => {
             className="position-relative item-card mx-2 w-100 d-flex align-items-center gap-2 px-2 rounded"
           >
             <div className="item-card-img-container rounded-circle overflow-hidden bg-dark d-flex justify-content-center align-items-center">
-              <img height="120px" src={item.image} />
+              <img
+                height="120px"
+                src={
+                  item.image ||
+                  "https://res.cloudinary.com/dpnb8zw1d/image/upload/v1680636392/14669667_5508800_arspvr.jpg"
+                }
+              />
             </div>
             <div className="w-100">
               <div className="d-flex justify-content-around">

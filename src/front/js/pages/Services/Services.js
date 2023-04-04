@@ -81,7 +81,10 @@ export const Services = () => {
               <div className="card-img rounded-circle overflow-hidden d-flex justify-content-center align-items-center">
                 <img
                   width="150px"
-                  src={service.img}
+                  src={
+                    service.image ||
+                    "https://res.cloudinary.com/dpnb8zw1d/image/upload/v1680636392/14669667_5508800_arspvr.jpg"
+                  }
                   alt={`Imagen para ${service.title}`}
                 />
               </div>
