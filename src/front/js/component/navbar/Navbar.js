@@ -32,7 +32,7 @@ export const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul className="navbar-nav">
+          <ul className="navbar-nav gap-3">
             <li className="nav-item">
               <a className="nav-link" href="/#about">
                 Sobre Pets Friends

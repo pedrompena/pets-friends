@@ -44,7 +44,7 @@ export const ServicesNav = ({ setServices }) => {
     <div className="service-nav w-100 d-flex flex-wrap justify-content-evenly">
       <div className="d-flex flex-column px-3">
         <label className="fw-bold fs-5">Ciudad</label>
-        <select className="p-1 rounded" onChange={hanldeChangeCity}>
+        <select className="p-2 rounded" onChange={hanldeChangeCity}>
           <option value="">Selecciona una ciudad</option>
           <option value="Madrid">Madrid</option>
           <option value="Barcelona">Barcelona</option>
@@ -60,7 +60,7 @@ export const ServicesNav = ({ setServices }) => {
       </div>
       <div className="d-flex flex-column px-3">
         <label className="fw-bold fs-5">Tipo de servicio</label>
-        <select className="p-1 rounded" onChange={handleChangeType}>
+        <select className="p-2 rounded" onChange={handleChangeType}>
           <option value="">Selecciona un tipo de servicio</option>
           <option value="type_1">Paseo de 30 min</option>
           <option value="type_2">Paseo de 1 h</option>
