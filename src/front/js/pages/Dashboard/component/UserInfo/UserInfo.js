@@ -22,7 +22,7 @@ export const UserInfo = () => {
           {user.name} {user.surname}
         </h2>
         <p className="text-muted fw-semibold"> {user.email}</p>
-        <p className="text-muted fw-semibold">📍 {user.city}</p>
+        <p className="text-muted fw-semibold">{user.city}</p>
       </div>
       <p className="text-center">{user.description}</p>
       <button
