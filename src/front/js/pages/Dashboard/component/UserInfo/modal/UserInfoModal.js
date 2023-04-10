@@ -44,7 +44,6 @@ export const UserInfoModal = ({ handleOpenModal, user }) => {
           description: user.description || "",
           city: user.city,
           avatar: user.avatar || image,
-          password: "",
         }}
         onSubmit={(values, { resetForm }) => {
           saveInfo(values);
@@ -136,19 +135,6 @@ export const UserInfoModal = ({ handleOpenModal, user }) => {
               <option value="Las Palmas">Las Palmas de Gran Canaria</option>
               <option value="Bilbao">Bilbao</option>
             </select>
-            <label className="fw-bold" htmlFor="password">
-              Contraseña
-            </label>
-            <input
-              className="rounded"
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Pets1234*"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
             <button
               className="btn-dark btn px-3 w-50 rounded-pill mx-auto"
               type="submit"
