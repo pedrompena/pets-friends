@@ -53,7 +53,7 @@ export const Home = () => {
           <img
             key={toy.id}
             style={{ top: toy.y, left: toy.x, zIndex: -1, opacity: 0.3 }}
-            className="position-absolute"
+            className="position-absolute d-none d-md-block"
             width="50px"
             src={toy.img}
           />
