@@ -73,10 +73,19 @@
 		]
 	},
 	"dependencies": {
+		"@sefailyasoz/react-carousel": "^1.1.1",
+		"carousel-react-rcdev": "^0.0.5",
+		"formik": "^2.2.9",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
+		"react-bootstrap-carousel": "^4.1.1",
 		"react-dom": "^16.8.4",
+		"react-multi-carousel": "^2.8.2",
 		"react-polyfills": "0.0.1",
-		"react-router-dom": "^6.3.0"
+		"react-responsive-carousel": "^3.2.23",
+		"react-router-dom": "^6.3.0",
+		"react-simply-carousel": "^8.5.1",
+		"socket.io": "^4.6.1",
+		"socket.io-client": "^4.6.1"
 	}
 }

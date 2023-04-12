@@ -1,3 +1,367 @@
-/* 
-    General Styles used on every website (Don't Repeat Yourself)
-*/
+body {
+  background-color: #faece1;
+  overflow-x: hidden;
+}
+
+.box {
+  background-color: #f8f9fa;
+  padding: 2vh;
+  border-radius: 2vh;
+  margin-bottom: 2vh;
+}
+
+.navbar {
+  font-family: "Comfortaa";
+}
+
+.signup-title {
+  font-family: "Amatic SC";
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.form label,
+.form button,
+.form input,
+.form span,
+.form select,
+.login-link {
+  font-family: "Comfortaa";
+}
+
+.form input,
+.form textarea,
+.form select {
+  border: none;
+  background-color: rgb(0, 0, 0, 0.03);
+  padding: 5px 10px;
+}
+
+.form textarea {
+  resize: none;
+  height: 110px;
+}
+
+.footprint-1 {
+  top: -150px;
+  left: -190px;
+  rotate: 15deg;
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.footprint-2 {
+  top: 0;
+  left: -190px;
+  rotate: -15deg;
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.footprint-3 {
+  bottom: -195px;
+  right: -190px;
+  rotate: 15deg;
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.footprint-4 {
+  bottom: -45px;
+  right: -190px;
+  rotate: -15deg;
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.error-message {
+  margin-top: -15px;
+  padding-left: 10px;
+  font-size: x-small;
+  font-weight: 700;
+  background-color: rgb(0, 0, 0, 0.01);
+}
+
+.service-header {
+  background: url(https://images.unsplash.com/photo-1415795854641-f4a487a0fdc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80)
+    center center / cover no-repeat;
+  height: 15vh;
+}
+
+.service-header h2 {
+  font-family: "Amatic SC";
+  font-size: 8vh;
+  text-shadow: 1px 1px rgb(0, 0, 0, 0.3);
+}
+
+.card-service {
+  font-family: "Comfortaa";
+  min-width: 400px;
+  max-width: 400px;
+  max-height: 170px;
+  min-height: 170px;
+  background-color: #faece1;
+  overflow: hidden;
+}
+
+.card-img {
+  min-height: 100px;
+  max-height: 100px;
+  min-width: 100px;
+  max-width: 100px;
+}
+
+.profile-link {
+  opacity: 0;
+  top: 0;
+  left: 0;
+  transition: all 0.3s;
+}
+
+.card-service:hover .profile-link {
+  opacity: 1;
+  scale: 1.1;
+}
+
+.service-nav select {
+  font-family: "Comfortaa";
+  border: none;
+  background-color: rgb(0, 0, 0, 0.05);
+}
+
+.service-nav label {
+  font-family: "Comfortaa";
+}
+
+.profile-user-info {
+  width: 300px;
+}
+
+.user-img {
+  min-width: 200px;
+  max-width: 200px;
+  min-height: 200px;
+  max-height: 200px;
+}
+
+.user-name,
+.profile-user-content h2 {
+  font-family: "Amatic SC";
+}
+
+.profile-user-info p,
+.profile-user-info button,
+.profile-user-content p,
+.item-card h3 {
+  font-family: "Comfortaa";
+}
+
+.profile-user-content {
+  width: 500px;
+}
+
+.item-card-img-container {
+  min-width: 100px;
+  max-width: 100px;
+  min-height: 100px;
+  max-height: 100px;
+}
+
+.item-card {
+  background-color: #faece1;
+  min-height: 120px;
+  max-height: 120px;
+}
+
+.profile-user-info {
+  width: 300px;
+}
+
+.user-img {
+  min-width: 200px;
+  max-width: 200px;
+  min-height: 200px;
+  max-height: 200px;
+}
+
+.user-name,
+.profile-user-content h2 {
+  font-family: "Amatic SC";
+}
+
+.profile-user-info p,
+.profile-user-info button,
+.profile-user-content p,
+.item-card h3 {
+  font-family: "Comfortaa";
+}
+
+.profile-user-content {
+  width: 500px;
+}
+
+.item-card-img-container {
+  min-width: 100px;
+  max-width: 100px;
+  min-height: 100px;
+  max-height: 100px;
+}
+
+.item-card {
+  background-color: #faece1;
+  min-height: 120px;
+  max-height: 120px;
+}
+
+.service-card {
+  background-color: #faece1;
+  width: 600px;
+}
+
+.service-card span {
+  font-family: "Comfortaa";
+}
+
+.service-card h3,
+.services h2,
+.conect span {
+  font-family: "Amatic SC";
+}
+
+.conect {
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.service-card:hover .conect {
+  opacity: 1;
+  cursor: pointer;
+  scale: 1.01;
+}
+
+#Hero img {
+  position: absolute;
+}
+
+.hero-title {
+  font-family: "Amatic SC";
+  font-size: 13vh;
+  padding-top: 13vh;
+}
+
+.hero-subtitle {
+  font-family: "Comfortaa";
+}
+
+.gallery h2 {
+  font-family: "Amatic SC";
+}
+
+.contact h2,
+.contact p {
+  font-family: "Amatic SC";
+}
+
+.card-team:hover {
+  scale: 1.03;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.card-team a {
+  text-decoration: none;
+}
+
+.about-text h2 {
+  font-family: "Amatic SC";
+}
+
+.about-text p {
+  font-family: "Comfortaa";
+}
+
+.img-about-container img {
+  object-fit: cover;
+  object-position: center center;
+  height: 100%;
+}
+
+.items-title {
+  font-family: "Amatic SC";
+}
+
+.close-modal {
+  top: 5px;
+  right: 5px;
+}
+
+.close-modal:hover {
+  cursor: pointer;
+}
+
+.dashboard-content {
+  width: 800px;
+}
+
+.actions {
+  right: 10px;
+  opacity: 0;
+  transition: all 0.1s;
+}
+
+.item-card:hover .actions {
+  opacity: 1;
+}
+
+.actions i:hover {
+  cursor: pointer;
+  scale: 1.1;
+}
+
+.add {
+  font-size: 80px;
+}
+
+.add:hover {
+  cursor: pointer;
+  scale: 1.05;
+}
+
+.fa-check:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.non-chat {
+  font-family: "Comfortaa";
+}
+
+.chat-avatar {
+  max-width: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  min-height: 50px;
+}
+
+.chat-box {
+  min-width: 350px;
+  max-width: 350px;
+  min-height: 400px;
+  max-height: 400px;
+  background-color: #faece1;
+  overflow: auto;
+}
+
+.chat-title {
+  font-family: "Comfortaa";
+}
+
+.chat-card:hover {
+  scale: 1.01;
+  cursor: pointer;
+}

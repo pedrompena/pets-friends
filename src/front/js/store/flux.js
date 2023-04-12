@@ -1,54 +1,50 @@
 const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
-		},
-		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
+  return {
+    store: {
+      BACKEND_URL: process.env.BACKEND_URL,
+      clientInfo: {},
+    },
+    actions: {
+      setClientInfo: () => {
+        const client = JSON.parse(localStorage.getItem("clientInfo"));
+        setStore({ ...getStore(), clientInfo: client });
+      },
+      logout: () => {
+        localStorage.removeItem("clientInfo");
+        setStore({ ...getStore(), clientInfo: {} });
+      },
+      setLocalStorage: (client) => {
+        localStorage.setItem("clientInfo", JSON.stringify(client));
+      },
+      uploadImage: async (file) => {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("client_id", getStore().clientInfo.id);
 
-			getMessage: async () => {
-				try{
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
-				}
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+        const options = {
+          method: "POST",
+          body: formData,
+        };
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
-		}
-	};
+        const resp = await fetch(
+          getStore().BACKEND_URL + "/api/upload",
+          options
+        );
+        const data = await resp.json();
+        return data;
+      },
+      getUserInfo: async (id) => {
+        const resp = await fetch(
+          `${getStore().BACKEND_URL}/api/clients/${
+            id || getStore().clientInfo.id
+          }`
+        );
+        const data = await resp.json();
+        data && getActions().setLocalStorage(data.result);
+        data && getActions().setClientInfo();
+      },
+    },
+  };
 };
 
 export default getState;
